@@ -1,0 +1,3 @@
+<% @data.each do |entry| %>
+  <option value="<%= entry["name"]%>, <%=entry["lat"]%>, <%=entry["lng"] %>"> <%= entry["name"]%></option>
+<% end %>

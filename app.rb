@@ -23,10 +23,18 @@ module Citibike
       erb :form
     end
 
-    post '/form' do
-      @start = params[:start]
-      @end = params[:end]
-      "You chose a route starting from #{@start} going to #{@end}"
+    post '/map' do
+      @start = params["start"]
+      @end = params["end"]
+      # @startlat = @start.split(",")[1].to_i/1000000.0
+      # @startlng = @start.split(",")[2].to_i/1000000.0
+      # @endlat = @end.split(",")[1].to_i/1000000.0
+      # @endlng = @end.split(",")[2].to_i/1000000.0
+      erb :map
     end
   end
 end
+
+
+ # @start = params[:start].split(",").slice(1,2).collect{|x| x.to_i/1000000.0}
+ #      @end = params[:end].split(",").slice(1,2).collect{|x| x.to_i/1000000.0}
