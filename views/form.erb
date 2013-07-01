@@ -1,0 +1,14 @@
+<br>
+<form action='/form' method="POST">
+  <select name="start"> 
+    <% @data.each do |entry| %>
+      <option value="<%=entry["name"] %>"><%=entry["name"]%></option>
+    <% end %>
+  </select> <br>
+  <select name="end"> 
+    <% @data.each do |entry| %>
+      <option value="<%=entry["name"] %>"><%=entry["name"]%></option>
+    <% end %>
+  </select> <br>
+  <input type="submit" value="submit">
+</form>

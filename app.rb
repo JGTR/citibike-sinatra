@@ -18,5 +18,15 @@ module Citibike
       erb :home
     end
 
+    get '/form' do
+      @data
+      erb :form
+    end
+
+    post '/form' do
+      @start = params[:start]
+      @end = params[:end]
+      "You chose a route starting from #{@start} going to #{@end}"
+    end
   end
 end

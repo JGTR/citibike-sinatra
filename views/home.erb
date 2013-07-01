@@ -1,1 +1,7 @@
-<%= @data.inspect %>
+<% @data.each do |entry| %>
+  <h3> <%= entry["name"] %> </h3>
+  <ul>
+    <li>Latitude: <%= entry["lat"] %> </li>
+    <li>Longitude: <%= entry["lng"] %> </li>
+  </ul>
+<% end %>
