@@ -1,7 +1,11 @@
-<% @data.each do |entry| %>
-  <h3> <%= entry["name"] %> </h3>
+<div id="nav">
+  <span> <a href="/stations/new">Create new station</a></span>
+</div>
+
+<% @stations.each do |station| %>
+  <h3> <a href="/stations/<%=station.id%>"> <%= station.name %> </a></h3>
   <ul>
-    <li>Latitude: <%= entry["lat"] %> </li>
-    <li>Longitude: <%= entry["lng"] %> </li>
+    <li>Latitude: <%= station.latitude %> </li>
+    <li>Longitude: <%= station.longitude %> </li>
   </ul>
 <% end %>

@@ -9,12 +9,9 @@ end
 
 module Citibike
 	class App < Sinatra::Application
-    before do
-      json = File.open("data/citibikenyc.json").read
-      @data = MultiJson.load(json)
-    end
 
     get '/' do
+      @stations = Station.all
       erb :home
     end
 
@@ -31,6 +28,29 @@ module Citibike
       # @endlat = @end.split(",")[1].to_i/1000000.0
       # @endlng = @end.split(",")[2].to_i/1000000.0
       erb :map
+    end
+
+    get '/stations/new' do
+      @station = Station.new("none")
+      erb :new
+    end
+
+    post '/stations/create' do
+
+      erb :create
+    end
+
+    get '/stations/:id' do
+      @station = Station.all[(params[:id].to_i - 1)]
+      erb :show
+    end
+
+    get '/stations/:id/edit' do
+      erb :edit
+    end
+
+    get '/stations/:id/delete' do
+      erb :delete
     end
   end
 end
