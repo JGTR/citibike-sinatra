@@ -48,7 +48,7 @@ module Citibike
       @station.availableBikes = params[:availableBikes]
       @station.availableDocks = params[:availableDocks]
       @station.save
-      erb :show, :layout => true
+      redirect 'stations/'+ Station.last.id.to_s
     end
 
     get '/stations/:id' do
@@ -73,6 +73,7 @@ module Citibike
     end
 
     get '/stations/:id/delete' do
+      @station = Station.get(params[:id]).destroy
       erb :delete, :layout => true
     end
   end
