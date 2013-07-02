@@ -1,11 +1,12 @@
-<div id="nav">
-  <span> <a href="/stations/new">Create new station</a></span>
-</div>
-
 <% @stations.each do |station| %>
-  <h3> <a href="/stations/<%=station.id%>"> <%= station.name %> </a></h3>
+  <div class="span8">
+  <h4> <a href="/stations/<%=station.id%>"> <%= station.name %> </a></h4>
   <ul>
+    <li>Id: <%= station.id %> </li>
     <li>Latitude: <%= station.latitude %> </li>
     <li>Longitude: <%= station.longitude %> </li>
+    <li>Bikes available: <%= station.availableBikes %> </li>
+    <li>Docks available : <%= station.availableDocks %> </li> 
   </ul>
+</div>
 <% end %>

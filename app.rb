@@ -10,14 +10,19 @@ end
 module Citibike
 	class App < Sinatra::Application
 
+    before do
+        source = Station.new("data/citibikenyc.json")
+        source.call
+    end
+
     get '/' do
       @stations = Station.all
-      erb :home
+      erb :home, :layout => true
     end
 
     get '/form' do
       @data
-      erb :form
+      erb :form, :layout => true
     end
 
     post '/map' do
@@ -27,30 +32,48 @@ module Citibike
       # @startlng = @start.split(",")[2].to_i/1000000.0
       # @endlat = @end.split(",")[1].to_i/1000000.0
       # @endlng = @end.split(",")[2].to_i/1000000.0
-      erb :map
+      erb :map, :layout => true
     end
 
     get '/stations/new' do
       @station = Station.new("none")
-      erb :new
+      erb :new, :layout => true
     end
 
     post '/stations/create' do
-
-      erb :create
+      @station = Station.new("none")
+      @station.name = params[:name]
+      @station.latitude = params[:latitude]
+      @station.longitude = params[:longitude]
+      @station.availableBikes = params[:availableBikes]
+      @station.availableDocks = params[:availableDocks]
+      @station.save
+      erb :show, :layout => true
     end
 
     get '/stations/:id' do
       @station = Station.all[(params[:id].to_i - 1)]
-      erb :show
+      erb :show, :layout => true
     end
 
     get '/stations/:id/edit' do
-      erb :edit
+      @station = Station.all[(params[:id].to_i - 1)]
+      erb :edit, :layout => true
+    end
+
+    post '/stations/:id/update' do
+      @station = Station.all[(params[:id].to_i - 1)]
+      @station.name = params[:name]
+      @station.latitude = params[:latitude]
+      @station.longitude = params[:longitude]
+      @station.availableBikes = params[:availableBikes]
+      @station.availableDocks = params[:availableDocks]
+      @station.save
+      erb :show, :layout => true
     end
 
     get '/stations/:id/delete' do
-      erb :delete
+      erb :delete, :layout => true
     end
   end
 end

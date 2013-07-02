@@ -1,1 +1,11 @@
-<p> TBD </p>
+<h3> Edit the station </h3>
+
+<form action="/stations/<%=@station.id%>/update" method="POST">
+  <label>Station name</label><input type="text" name="name" value="<%=@station.name%>"/><br>
+  <label>Latitude</label><input type="text" name="latitude" value="<%=@station.latitude %>"/><br>
+  <label>Longitude</label><input type="text" name="longitude" value="<%=@station.longitude %>"/><br>
+  <label>Docks available</label><input type="text" name="availableDocks" value="<%=@station.availableDocks %>"/><br>
+  <label>Bikes available</label><input type="text" name="availableBikes" value="<%= @station.availableBikes%>"/><br>
+  <input type="submit" class="btn" value="Edit!"/>
+
+</form>
